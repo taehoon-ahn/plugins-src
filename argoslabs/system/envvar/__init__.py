@@ -9,7 +9,7 @@
 
 Description
 ===========
-ARGOS LABS plugin module sample
+ARGOS LABS plugin module randomalphabet
 """
 # Authors
 # ===========

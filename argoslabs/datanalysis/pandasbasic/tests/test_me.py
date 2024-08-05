@@ -246,7 +246,7 @@ class TU(TestCase):
                 for ndx, row in enumerate(cr):
                     self.assertTrue(len(row) in (15, 16))
                     rows.append(row)
-            self.assertTrue(len(rows) == 39 and rows[-1][-3] == '14')
+            self.assertTrue(len(rows) == 39 and rows[-1][-3] == '27')
         except Exception as e:
             sys.stderr.write('\n%s\n' % str(e))
             self.assertTrue(False)

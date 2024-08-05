@@ -17,11 +17,6 @@ ARGOS LABS plugin module for EasyOCR API Server
 # Change Log
 # ----------
 #
-#  * [2023/08/04]
-#     - Add return_ocr
-#     - Exclude black questions
-#  * [2023/07/24]
-#     - add returnOCR option
 #  * [2023/03/01]
 #     - Use LazarusForms API Server
 
@@ -46,16 +41,9 @@ def get_questions(mcxt, argspec):
             for line in ifp:
                 line = line.strip()
                 ql.append(line)
-    # if not (ql or argspec.return_ocr):
-    #     raise ValueError(f'Invalid "Question"')
-    # Exclude black questions
-    nql = []
-    for q in ql:
-        q = q.strip()
-        if not q:
-            continue
-        nql.append(q)
-    return nql
+    if not ql:
+        raise ValueError(f'Invalid "Question"')
+    return ql
 
 
 ################################################################################
@@ -70,11 +58,9 @@ def do_ocr(mcxt, argspec):
         with open(argspec.img, "rb") as ifp:
             encoded_string = base64.b64encode(ifp.read())
         ql = get_questions(mcxt, argspec)
-        return_ocr = not bool(ql)
         json_data = {
             'base64': encoded_string.decode('utf-8'),
             'question': ql,
-            'returnOCR': return_ocr,
         }
 
         jd = json.dumps(json_data)
@@ -89,20 +75,14 @@ def do_ocr(mcxt, argspec):
             raise RuntimeError(emg)
 
         rj = rp.json()
-        if 'data' in rj:
-            cw = csv.writer(sys.stdout, lineterminator='\n')
-            cw.writerow(['question', 'answer'])
-            for qa in rj['data']:
-                cw.writerow([
-                    qa['question'],
-                    qa['answer'],
-                ])
-        #
-        elif 'ocrResults' in rj:
-            # for readResult in rj['ocrResults']['readResults']:
-            #     for line in readResult['lines']:
-            #         print(line['text'])
-            print(rj['ocrResults']['rawText'])
+        cw = csv.writer(sys.stdout, lineterminator='\n')
+        cw.writerow(['question', 'answer'])
+        for qa in rj['data']:
+            cw.writerow([
+                qa['question'],
+                qa['answer'],
+            ])
+        # print(rj['data'][0]['answer'], end='')
         if argspec.json_file:
             with open(argspec.json_file, 'w', encoding='utf-8') as ofp:
                 ofp.write(json.dumps(rj, ensure_ascii=False))
@@ -206,10 +186,6 @@ def _main(*args):
                           display_name='YAML File',
                           input_method='filewrite',
                           help='If this YAML file is given API result will be saved')
-        # mcxt.add_argument('--return-ocr',
-        #                   display_name='Return OCR',
-        #                   action='store_true',
-        #                   help='If this flag is set then just OCR result will be return without questions')
         argspec = mcxt.parse_args(args)
         return do_main(mcxt, argspec)
 

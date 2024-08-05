@@ -43,7 +43,7 @@ class TU(TestCase):
                 print('Skip testing at test/build time')
                 return
             r = main(
-                    '--filename', 'sample.csv',
+                    '--filename', 'randomalphabet.csv',
                     # '--neditable', True,
                     '--font', 'monospace',
                     #'--checkbox', 'I read and accept the terms.',

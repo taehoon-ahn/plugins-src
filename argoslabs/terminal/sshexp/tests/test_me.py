@@ -43,7 +43,7 @@ class TU(TestCase):
     HOST = {
         'linux': [
             {
-                'host': '192.168.99.250',
+                'host': '175.207.29.186',
                 'port': 22,
             },
             {
@@ -95,7 +95,7 @@ class TU(TestCase):
     # ==========================================================================
     def test0120_not_enough_parameter(self):
         try:
-            _ = main('host', 'user', 'prompt')
+            _ = main('host', 'user', 'prompt','ls')
             self.assertTrue(False)
         except Exception as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -123,30 +123,30 @@ class TU(TestCase):
                 os.remove(err_f)
 
     # # ==========================================================================
-    # def test0200_valid_host(self):
-    #     out_f = 'out.txt'
-    #     err_f = 'err.txt'
-    #     try:
-    #         host, port = self._get_host('linux')
-    #         r = main(host, 'root', 'root@testweb.*# $',
-    #                  '--port', port,
-    #                  '--password', 'r',
-    #                  '--echo-display',
-    #                  'ls', 'date',
-    #                  '--outfile', out_f, '--errfile', err_f)
-    #         self.assertTrue(r == 0)
-    #         with open(out_f) as ifp:
-    #             out = ifp.read()
-    #             print(out)
-    #             self.assertTrue(out.find('Last login') >= 0)
-    #     except Exception as e:
-    #         sys.stderr.write('\n%s\n' % str(e))
-    #         self.assertTrue(False)
-    #     finally:
-    #         if os.path.exists(out_f):
-    #             os.remove(out_f)
-    #         if os.path.exists(err_f):
-    #             os.remove(err_f)
+    def test0200_valid_host(self):
+        out_f = 'out.txt'
+        err_f = 'err.txt'
+        try:
+            host, port = self._get_host('linux')
+            r = main(host, 'newmail', 'root@testweb.*# $',
+                     '--port', port,
+                     '--password', 'r',
+                     '--echo-display',
+                     'ls', 'date',
+                     '--outfile', out_f, '--errfile', err_f)
+            self.assertTrue(r == 0)
+            with open(out_f) as ifp:
+                out = ifp.read()
+                print(out)
+                self.assertTrue(out.find('Last login') >= 0)
+        except Exception as e:
+            sys.stderr.write('\n%s\n' % str(e))
+            self.assertTrue(False)
+        finally:
+            if os.path.exists(out_f):
+                os.remove(out_f)
+            if os.path.exists(err_f):
+                os.remove(err_f)
     #
     # # ==========================================================================
     # def test0210_display_index(self):

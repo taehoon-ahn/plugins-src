@@ -55,7 +55,7 @@ class TU(TestCase):
     def test0080_pastevalue(self):
         try:
             # only CSV is allowed for source
-            r = main('sample.xlsx', '--newfilename', 'new.csv')
+            r = main('randomalphabet.xlsx', '--newfilename', 'new.csv')
             self.assertTrue(r != 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -65,7 +65,7 @@ class TU(TestCase):
     def test0100_list_format(self):
         try:
             stdout = 'stdout.txt'
-            r = main('sample.csv', '--list-format',
+            r = main('randomalphabet.csv', '--list-format',
                      '--outfile', stdout)
             self.assertTrue(r == 0)
             with open(stdout) as ifp:
@@ -81,7 +81,7 @@ class TU(TestCase):
     # def test0110_success(self):
     #     try:
     #         stdout = 'stdout.txt'
-    #         r = main('sample.csv', '--newfilename', 'new.xlsx', '--range',
+    #         r = main('randomalphabet.csv', '--newfilename', 'new.xlsx', '--range',
     #                  'a:b',
     #                  '--format', 'yyyy-mm-dd', '--range', 'e:f', '--format',
     #                  '0%',
@@ -116,7 +116,7 @@ class TU(TestCase):
     # def test0130_success(self):
     #     try:
     #         stdout = 'stdout.txt'
-    #         r = main('sample.csv',
+    #         r = main('randomalphabet.csv',
     #                  '--range', 'e1', '--format', '0%',
     #                  '--range', 'c1', '--format', '"$"#,##0.00_-',
     #                  '--outfile', stdout)
@@ -124,7 +124,7 @@ class TU(TestCase):
     #         with open(stdout) as ifp:
     #             rs = ifp.read()
     #             print(rs)
-    #         self.assertTrue(os.path.abspath(rs) == os.path.abspath('sample.xlsx'))
+    #         self.assertTrue(os.path.abspath(rs) == os.path.abspath('randomalphabet.xlsx'))
     #     except ArgsError as e:
     #         sys.stderr.write('\n%s\n' % str(e))
     #         self.assertTrue(False)

@@ -76,7 +76,7 @@ class TU(TestCase):
     def test0120_userfile(self):
         try:
             r = main('--user_token',self.usertoken,'--channel', '#general',
-                     '--file','sample.txt')
+                     '--file','randomalphabet.txt')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))

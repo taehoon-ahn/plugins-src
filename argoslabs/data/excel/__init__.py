@@ -15,11 +15,29 @@ ARGOS LABS plugin module for Excel
 # Authors
 # ===========
 #
-# * Jerry Chae, Kyobong Ahn
+# * Jerry Chae, Kyobong Ahn, WanJin Choi
 #
 # Change Log
 # --------
+#  * [2024/05/14] Wanjin
+#     rquirement.txt파일에 openpyxl버전이 고정 되어 있어(3.0.7)타 플러그인에 영향을 주는 문제 발생(ex)pandas1 -> openpyxl 3.1.0버전을 요구)
+#     이에 requirement에 openpyxl버전을 지정하지 않고 진행
 #
+#  * [2024/05/14] Wanjin
+#     - 요청사항 반영
+#       ・패스워드 포함 파일 때만 동작한다
+#       ・Remove Password의 체크가 들어가 있을 때는, 파일의 패스워드를 제거한다
+#       ・Remove Password의 체크가 들어가 있지 않아, 패스워드가 입력되고 있을 때는, 파일의 읽고 쓰기를 실시하는 처리는 통상대로 실시해, 처리 후에는 파일의 패스워드를 원래대로 되돌린다.
+#     - remove 함수 추가
+#  * [2024/05/03] Wanjin
+#     - remove-password check옵션이 되지 않아 이문제 해결
+#       if argspec.remove_password True 일경우 실행되도록 수정
+#  * [2024/04/09] Wanjin
+#     - 엑셀 암호간 2가지 경우 존재 1.편집사용 암호해제 2.엑셀파일 자체의 암호해제 문제가 있음
+#    - 이를 해결하고자 2가지의 암호해제 사용
+#  * [2024/04/09] Wanjin
+#     - Remove Password 안되는 문제 코드 수정
+
 #  * [2023/06/22] Kyobong
 #     - data only 사용시 xlwing에서 간헐적으로 sheet를 찾기 못하는 에러발생. sheet를 찾는 로직 추가
 #     - "Sheet Finder" 기능 추가 기본값은 5
@@ -118,6 +136,9 @@ from alabs.common.util.vvencoding import get_file_encoding
 from alabs.common.util.vvargs import ModuleContext, func_log, \
     ArgsError, ArgsExit, get_icon_path
 import warnings
+from openpyxl import load_workbook
+import win32com.client
+from openpyxl.workbook.protection import WorkbookProtection
 warnings.filterwarnings("ignore")
 
 
@@ -525,34 +546,38 @@ class Excel(object):
 
         from pathlib import Path
 
-        excel_file_path = Path(excel_file_path)
+        if not excel_file_path:
+            pass
+        else:
+            excel_file_path = Path(excel_file_path)
 
-        vbs_script = \
-            f"""' Save with password required upon opening
+            vbs_script = \
+                f"""' Save with password required upon opening
+    
+            Set excel_object = CreateObject("Excel.Application")
+            Set workbook = excel_object.Workbooks.Open("{excel_file_path}")
+    
+            excel_object.DisplayAlerts = False
+            excel_object.Visible = False
+    
+            workbook.SaveAs "{excel_file_path}",, "{pw}"
+    
+            excel_object.Application.Quit
+            """
 
-        Set excel_object = CreateObject("Excel.Application")
-        Set workbook = excel_object.Workbooks.Open("{excel_file_path}")
+            # write
+            vbs_script_path = excel_file_path.parent.joinpath("set_pw.vbs")
+            with open(vbs_script_path, "w") as file:
+                file.write(vbs_script)
 
-        excel_object.DisplayAlerts = False
-        excel_object.Visible = False
+            # execute
+            subprocess.call(['cscript.exe', str(vbs_script_path)])
 
-        workbook.SaveAs "{excel_file_path}",, "{pw}"
-
-        excel_object.Application.Quit
-        """
-
-        # write
-        vbs_script_path = excel_file_path.parent.joinpath("set_pw.vbs")
-        with open(vbs_script_path, "w") as file:
-            file.write(vbs_script)
-
-        # execute
-        subprocess.call(['cscript.exe', str(vbs_script_path)])
-
-        # remove
-        vbs_script_path.unlink()
+            # remove
+            vbs_script_path.unlink()
 
         return
+
 
     # ==========================================================================
     def clear_cell(self):
@@ -619,6 +644,24 @@ def save_as_excel(filepath, password):
         return xl_file
     except Exception as err:
         raise err
+################################################################################
+def remove(filename,password,sheet_name):
+        try:
+            wb = load_workbook(filename, read_only=False, keep_links=False)
+            if not sheet_name :
+                ws=wb.active
+            else:
+                ws = wb[sheet_name]
+            wb.save(filename)
+        except:
+            excel = win32com.client.Dispatch("Excel.Application")
+            excel.DisplayAlerts = False
+            workbook = excel.Workbooks.Open(filename, Password=password)
+            workbook.SaveAs(filename, Password="")
+            workbook.Close()
+            excel.Quit()
+            excel.DisplayAlerts = True
+
 
 
 ################################################################################
@@ -630,17 +673,94 @@ def do_excel(mcxt, argspec):
     try:
         if argspec.reverse and argspec.big:
             raise RuntimeError('Cannot set Pivot and Big-Data Option cannot set together.')
+        #1.패스워드 포함파일때만 동작한다
         if argspec.password:
-            argspec.filename = save_as_excel(argspec.filename, argspec.password)
+            ## Remove Password check 표시가 있는 경우 파일 패스워드를 제거
+            if argspec.remove_password:
+                remove(argspec.filename, argspec.password, argspec.sheet)
+                setattr(argspec, 'formula', None)
+                exl = Excel(argspec, mcxt)
+                data_only = argspec.data_only
+                if exl.extension in ('.xlsx', '.csv'):
+                    exl.open(read_only=argspec.big, data_only=data_only)  # --big 이면 read_only로 처리
+                elif exl.extension == '.xlsm':
+                    exl.open(read_only=False, data_only=data_only, keep_vba=True)
+                else:
+                    raise RuntimeError('Only support file extension of ("*.csv", "*.xlsx", "*.xlsm")')
+                exl.save_formula()
+                if argspec.list_sheet:
+                    print(exl.list_sheet())
+                elif argspec.dimensions:
+                    print(exl.ws.dimensions)
+                elif argspec.find_string:
+                    exl.calc_range()
+                    r = exl.find(argspec.find_string, argspec.find_partial)
+                    print('\n'.join(r), end='')
+                else:
+                    if exl.calc_range():
+                        exl.get()
+                        # print(str(exl))
+                        # 큰 데이터인 경우 _get yield로 row 별로 계속 stdout 으로 출력
+                    exl.save()
+                    if argspec.clear_cell:
+                        exl.clear_cell()
+                    if argspec.set_cell:
+                        exl.set_cell(org_exl_f)
+                sys.stdout.flush()
+                return 0
+            #Remove check 표시없이 암호만 있으면 읽고쓰고 다시 암호설정
+            else:
+                remove(argspec.filename, argspec.password, argspec.sheet)
+                setattr(argspec, 'formula', None)
+                exl = Excel(argspec, mcxt)
+                data_only = argspec.data_only
+                if exl.extension in ('.xlsx', '.csv'):
+                    exl.open(read_only=argspec.big, data_only=data_only)  # --big 이면 read_only로 처리
+                elif exl.extension == '.xlsm':
+                    exl.open(read_only=False, data_only=data_only, keep_vba=True)
+                else:
+                    raise RuntimeError('Only support file extension of ("*.csv", "*.xlsx", "*.xlsm")')
+                exl.save_formula()
+                if argspec.list_sheet:
+                    print(exl.list_sheet())
+                elif argspec.dimensions:
+                    print(exl.ws.dimensions)
+                elif argspec.find_string:
+                    exl.calc_range()
+                    r = exl.find(argspec.find_string, argspec.find_partial)
+                    print('\n'.join(r), end='')
+                else:
+                    if exl.calc_range():
+                        exl.get()
+                        # print(str(exl))
+                        # 큰 데이터인 경우 _get yield로 row 별로 계속 stdout 으로 출력
+                    exl.save()
+                    if argspec.clear_cell:
+                        exl.clear_cell()
+                    if argspec.set_cell:
+                        exl.set_cell(org_exl_f)
+                sys.stdout.flush()
+                # 비밀번호 다시설정.
+                if argspec.password and not argspec.remove_password and argspec.filename != argspec.write:
+                    exl.set_password(argspec.filename, argspec.password)
+                if argspec.password and not argspec.remove_password:
+                    exl.set_password(argspec.write, argspec.password)
+                if argspec.set_pw_file:
+                    exl.set_pw()
+                return 0
+
+        ##엑셀에 암호없을때
         setattr(argspec, 'formula', None)
         exl = Excel(argspec, mcxt)
         data_only = argspec.data_only
         if exl.extension in ('.xlsx', '.csv'):
-            exl.open(read_only=argspec.big, data_only=data_only)  # --big 이면 read_only로 처리
+            exl.open(read_only=argspec.big,
+                     data_only=data_only)  # --big 이면 read_only로 처리
         elif exl.extension == '.xlsm':
             exl.open(read_only=False, data_only=data_only, keep_vba=True)
         else:
-            raise RuntimeError('Only support file extension of ("*.csv", "*.xlsx", "*.xlsm")')
+            raise RuntimeError(
+                'Only support file extension of ("*.csv", "*.xlsx", "*.xlsm")')
         exl.save_formula()
         if argspec.list_sheet:
             print(exl.list_sheet())
@@ -660,15 +780,9 @@ def do_excel(mcxt, argspec):
                 exl.clear_cell()
             if argspec.set_cell:
                 exl.set_cell(org_exl_f)
-        # 비밀번호 다시설정.
-        if argspec.password and not argspec.remove_password and argspec.filename != argspec.write:
-            exl.set_password(argspec.filename, argspec.password)
-        if argspec.write_password and not argspec.remove_password:
-            exl.set_password(argspec.write, argspec.write_password)
+        sys.stdout.flush()
         if argspec.set_pw_file:
             exl.set_pw()
-
-        sys.stdout.flush()
         return 0
     except Exception as err:
         msg = str(err)
@@ -785,14 +899,14 @@ def _main(*args):
                           action='store_true',
                           help='Remove password from excel file')
         # ----------------------------------------------------------------------
-        mcxt.add_argument('--password', display_name='Excel/CSV File',
+        mcxt.add_argument('--password', display_name='Edit Password',
                           input_group='Password',
                           input_method='password',
-                          help='If Excel is protected by password then use this. This is only works on Excel installed Windows')
-        mcxt.add_argument('--write-password', display_name='Write-to Excel file',
+                          help='If you need to decrypt editing, use it')
+        mcxt.add_argument('--write-password', display_name='Write password',
                           input_group='Password',
                           input_method='password',
-                          help='If Excel is protected by password then use this. This is only works on Excel installed Windows')
+                          help='If you want to new passord or set a passowrd on the file, use it')
         # ----------------------------------------------------------------------
         mcxt.add_argument('--set-pw-file', display_name='File Password', default=None,
                           input_method='password',

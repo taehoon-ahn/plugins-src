@@ -1,12 +1,26 @@
+"""
+====================================
+ :mod:`argoslabs.web.selenium`
+====================================
+.. moduleauthor:: Jerry Chae <mcchae@argos-labs.com>
+.. note:: ARGOS-LABS License
 
+Description
+===========
+ARGOS LABS plugin module for web selenium
+"""
+
+################################################################################
 import sys
-from argoslabs.web.selenium.tests.test_me import TU
-from unittest import TestLoader, TextTestRunner
+from alabs.common.util.vvargs import ArgsError, ArgsExit
+from argoslabs.web.selenium import main
 
 
 ################################################################################
-if __name__ == "__main__":
-    suite = TestLoader().loadTestsFromTestCase(TU)
-    result = TextTestRunner(verbosity=2).run(suite)
-    ret = not result.wasSuccessful()
-    sys.exit(ret)
+if __name__ == '__main__':
+    try:
+        main()
+    except ArgsError as err:
+        sys.stderr.write('Error: %s\nPlease -h to print help\n' % str(err))
+    except ArgsExit as _:
+        pass

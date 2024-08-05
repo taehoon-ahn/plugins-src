@@ -4,6 +4,6 @@
 alabs.common
 
 # for Excel
-openpyxl>=2.6.1
+openpyxl
 pywin32
 xlwings==0.22.1

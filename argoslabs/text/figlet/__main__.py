@@ -13,7 +13,7 @@ ARGOS LABS plugin module for web selenium
 ################################################################################
 import sys
 from alabs.common.util.vvargs import ArgsError, ArgsExit
-from argoslabs.text.figlet import main
+from argoslabs.string.randomalphabet import main
 
 
 ################################################################################

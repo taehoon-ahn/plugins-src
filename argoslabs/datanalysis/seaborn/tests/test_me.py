@@ -41,7 +41,7 @@ class TU(TestCase):
             r = main('name.csv',
                      'Kilograms', '--y', 'Centimeters',
                      '--relational-plots', 'relplot',
-                     '--output', 'sample.png')
+                     '--output', 'randomalphabet.png')
             self.assertFalse(r != 0)
         except Exception as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -301,7 +301,7 @@ class TU(TestCase):
     # ==========================================================================
     def test1800_residplot(self):
         try:
-            r = main('C:\\Users\\argos\\Desktop\\bongsplugin\\plug-in-test\\seaborn\\anscombe.csv',
+            r = main('C:\\plugins-src\\argoslabs\\datanalysis\\seaborn\\tests\\anscombe.csv',
                      'x', '--y', 'y',
                      '--regression-plots', 'residplot',)
             self.assertTrue(r == 0)

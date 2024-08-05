@@ -39,8 +39,8 @@ class TU(TestCase):
     # # ==========================================================================
     # def test0100_success(self):
     #     try:
-    #         r = main('Splitting', '--filename', 'sample.pdf',
-    #                  '--output_folder', 'sample')
+    #         r = main('Splitting', '--filename', 'randomalphabet.pdf',
+    #                  '--output_folder', 'randomalphabet')
     #         self.assertTrue(r == 0)
     #     except ArgsError as e:
     #         sys.stderr.write('\n%s\n' % str(e))
@@ -49,7 +49,7 @@ class TU(TestCase):
     # # ==========================================================================
     # def test0110_success(self):
     #     try:
-    #         r = main('Merging', '--folder', 'sample',
+    #         r = main('Merging', '--folder', 'randomalphabet',
     #                  '--output_file', 'merged_file.pdf')
     #         self.assertTrue(r == 0)
     #     except ArgsError as e:
@@ -59,8 +59,8 @@ class TU(TestCase):
     # # ==========================================================================
     # def test0120_success(self):
     #     try:
-    #         r = main('Merging', '--filename', 'sample/sample_1.pdf',
-    #                  '--filename', 'sample/sample_2.pdf',
+    #         r = main('Merging', '--filename', 'randomalphabet/sample_1.pdf',
+    #                  '--filename', 'randomalphabet/sample_2.pdf',
     #                  '--output_folder', 'sample0')
     #         self.assertTrue(r == 0)
     #     except ArgsError as e:
@@ -70,7 +70,7 @@ class TU(TestCase):
     # # ==========================================================================
     # def test0130_success(self):
     #     try:
-    #         r = main('Splitting', '--filename', 'sample.pdf',
+    #         r = main('Splitting', '--filename', 'randomalphabet.pdf',
     #                  '--output_folder', 'sample0')
     #         self.assertTrue(r == 0)
     #     except ArgsError as e:
@@ -80,8 +80,8 @@ class TU(TestCase):
     # # ==========================================================================
     # def test0140_success(self):
     #     try:
-    #         r = main('Merging', '--filename', 'sample/sample_1.pdf',
-    #                  '--filename', 'sample/sample_2.pdf',
+    #         r = main('Merging', '--filename', 'randomalphabet/sample_1.pdf',
+    #                  '--filename', 'randomalphabet/sample_2.pdf',
     #                  '--output_folder', 'sample0')
     #         self.assertTrue(r == 0)
     #     except ArgsError as e:

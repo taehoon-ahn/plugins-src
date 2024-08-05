@@ -45,7 +45,7 @@ class TU(TestCase):
     def test0100_success(self):
         try:
             r = main('Other', '..',
-                     'http://my-sandbox.turvo.com/api/pub', 'sample.pdf',
+                     'http://my-sandbox.turvo.com/api/pub', 'randomalphabet.pdf',
                      '--shipment_id', '38674', )
             self.assertTrue(r == 0)
         except ArgsError as e:
@@ -58,7 +58,7 @@ class TU(TestCase):
             r = main('Proof of Delivery',
                      '..',
                      'http://my-sandbox.turvo.com/api/pub',
-                     'sample.pdf', 'sample0.png', '--shipment_id', '38674')
+                     'randomalphabet.pdf', 'sample0.png', '--shipment_id', '38674')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -68,7 +68,7 @@ class TU(TestCase):
     def test0120_success(self):
         try:
             r = main('Other', '..',
-                     'http://my-sandbox.turvo.com/api/pub', 'sample.pdf',
+                     'http://my-sandbox.turvo.com/api/pub', 'randomalphabet.pdf',
                      '--shipment_id', '38674', '--name', 'Other0',
                      '--description',
                      'descriptions', '--account_name', "Customer-Waldbart")
@@ -81,7 +81,7 @@ class TU(TestCase):
     def test0130_success(self):
         try:
             r = main('Proof of Delivery', '..',
-                     'http://my-sandbox.turvo.com/api/pub', 'sample.pdf',
+                     'http://my-sandbox.turvo.com/api/pub', 'randomalphabet.pdf',
                      '--shipment_id', '38674', '--name', 'Proof1',
                      '--description',
                      'descriptions', '--account_name', "Customer-Waldbart")

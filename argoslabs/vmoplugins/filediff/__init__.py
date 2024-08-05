@@ -8,7 +8,7 @@
 .. note:: ARGOS-LABS License
 Description
 ===========
-ARGOS LABS plugin module sample
+ARGOS LABS plugin module randomalphabet
 """
 # Authors
 # ===========

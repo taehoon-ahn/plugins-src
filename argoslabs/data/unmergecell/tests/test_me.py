@@ -52,7 +52,7 @@ class TU(TestCase):
     # ==========================================================================
     def test100_xlsx1(self):
         try:
-            r = main('sample.xlsx','--newfilename', 'output.xlsx')
+            r = main('randomalphabet.xlsx','--newfilename', 'output.xlsx')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -61,7 +61,7 @@ class TU(TestCase):
     # ==========================================================================
     def test110_csv1(self):
         try:
-            r = main('sample.csv','--newfilename', 'output.csv')
+            r = main('randomalphabet.csv','--newfilename', 'output.csv')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -70,7 +70,7 @@ class TU(TestCase):
     # ==========================================================================
     def test120_xls(self):
         try:
-            r = main('sample-merged-excel.xls','--newfilename', 'output.xls')
+            r = main('randomalphabet-merged-excel.xls','--newfilename', 'output.xls')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))

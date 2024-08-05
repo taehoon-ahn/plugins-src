@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: argoslabs.demo.run-python-script
+Version: 4.329.1544
+Summary: ARGOS-LABS RPA plugin module - Run Python Script
+Home-page: https://www.argos-labs.com
+Author: Duk Kyu Lim
+Author-email: hong18s@gmail.com
+License: ARGOS-LABS Proprietary License
+Keywords: rpa,robot,module,argoslabs,demo,run_python_script
+Platform: Mac
+Platform: Windows
+Platform: Linux
+Classifier: Build :: Date :: 2022-03-29 16:06
+Classifier: Build :: Method :: alabs.ppm
+Classifier: License :: Other/Proprietary License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Change :: Log :: Unittest for Linux
+Classifier: Topic :: Change :: Log :: Unittest for Mac
+Classifier: Topic :: Change :: Log :: Unittest for Windows
+Classifier: Topic :: Demo :: Run Python Script
+Classifier: Topic :: RPA
+Requires-Python: >=3.6
+Requires-Dist: alabs.common
+
+UNKNOWN
+
+

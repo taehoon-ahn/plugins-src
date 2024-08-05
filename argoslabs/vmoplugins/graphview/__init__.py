@@ -7,7 +7,7 @@
 .. moduleauthor:: binhvmodev <binh.ha@vmodev.com>
 Description
 ===========
-VMO plugin module sample
+VMO plugin module randomalphabet
 """
 # Authors
 # ===========

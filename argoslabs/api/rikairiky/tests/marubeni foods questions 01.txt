@@ -1,0 +1,7 @@
+[table]No 1の品名は？
+[table]No 1の数量は？
+[table]No 1の単価は？
+[table]No 1の金額は？
+[table]No 1の商品コードは？
+[table]No 1の入数は？
+[table]No 1の単位は？

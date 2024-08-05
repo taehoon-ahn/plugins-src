@@ -45,17 +45,16 @@ class TU(TestCase):
     err = 'stderr.txt'
 
     # ==========================================================================
-    def setUp(self) -> None:
-        os.chdir(os.path.dirname(__file__))
-        return super().setUp()
-
-    # ==========================================================================
     def test0010_excelreplace_change_valueisnone(self):
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
         try:
-            xls = "text_excel_data.xlsx"
+            xls = r"C:\plugins-src\argoslabs\data\excelread\tests\text_excel_data.xlsx"
             r = main(xls,
                      '--sheet', 'Sheet3',
-                     '--data-only'
+                     '--data-only','text_excel_data.xlsx'
                      )
             self.assertTrue(r == 0)
         except Exception as e:
@@ -64,11 +63,14 @@ class TU(TestCase):
 
     # ==========================================================================
     def test0020_CSV_Range_OneColumn(self):
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
         try:
-            xls = "text_excel.csv"
+            xls = r"C:\plugins-src\argoslabs\data\excelread\tests\text_excel.csv"
             r = main(xls,
-                     '--range', '1:14'
-                     )
+                     '--range', '1:14'                     )
             self.assertTrue(r == 0)
         except Exception as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -76,12 +78,15 @@ class TU(TestCase):
 
     # ==========================================================================
     def test0030_data_only(self):
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
         try:
-            xls = "arraytest1.xlsx"
+            xls = r"C:\plugins-src\argoslabs\data\excelread\tests\arraytest1.xlsx"
             r = main(xls,
                      '--sheet', 'Sheet2',
-                     # '--data-only'
-                     )
+                     '--data-only'              )
             self.assertTrue(r == 0)
         except Exception as e:
             sys.stderr.write('\n%s\n' % str(e))
@@ -89,33 +94,54 @@ class TU(TestCase):
 
     # ==========================================================================
     def test1200_xlsm(self):
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
         try:
-            xls = "arraytest1.xlsm"
-            r = main(xls,
-                     )
+            xls = r"C:\plugins-src\argoslabs\data\excelread\tests\arraytest1.xlsm"
+            r = main(xls                     )
             self.assertTrue(r == 0)
         except Exception as e:
             sys.stderr.write('\n%s\n' % str(e))
             self.assertTrue(False)
 
-    # # ==========================================================================
-    # def test1200_xlsm_kioxia(self):
-    #     try:
-    #         xls = "Budget_Summary_App.xlsm"
-    #         r = main(xls,
-    #                  '--sheet', 'HOME'
-    #                  )
-    #         self.assertTrue(r == 0)
-    #     except Exception as e:
-    #         sys.stderr.write('\n%s\n' % str(e))
-    #         self.assertTrue(False)
+    # ==========================================================================
+    def test1200_xlsm_kioxia(self):
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
+        try:
+            xls = r"C:\plugins-src\argoslabs\data\excelread\tests\arraytest1.xlsm"
+            r = main(xls,
+                     '--sheet', 'Sheet2'                     )
+            self.assertTrue(r == 0)
+        except Exception as e:
+            sys.stderr.write('\n%s\n' % str(e))
+            self.assertTrue(False)
+
+    # ==========================================================================
+    def test1300_xlsx_shige(self):
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
+        try:
+            xls = r"C:\plugins-src\argoslabs\data\excelread\tests\arraytest1.xlsm"
+            r = main(xls,
+                     '--range', 'D3'                     )
+            self.assertTrue(r == 0)
+        except Exception as e:
+            sys.stderr.write('\n%s\n' % str(e))
+            self.assertTrue(False)
 
     # ==========================================================================
     def test9999_quit(self):
-        sg = sys.gettrace()
-        if sg is None:  # Not in debug mode
-            print('Skip testing at test/build time')
-            return
+        # sg = sys.gettrace()
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
         if os.path.exists(self.out):
             os.remove(self.out)
         if os.path.exists(self.err):

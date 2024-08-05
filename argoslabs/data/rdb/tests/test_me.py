@@ -74,21 +74,9 @@ class TU(TestCase):
             'mysql': {
                 'svclist': [
                     {
-                        'host': '192.168.35.241',
+                        'host': "argos-demo.vivans.net" ,
                         'port': 3306,
-                    },
-                    {
-                        'host': '192.168.99.249',
-                        'port': 3306,
-                    },
-                    {
-                        'host': 'localhost',
-                        'port': 13306,
-                    },
-                    {
-                        'host': '10.211.55.2',
-                        'port': 13306,
-                    },
+                    }
                 ],
                 'root_params': None,
                 'user_params': None,
@@ -456,27 +444,27 @@ class TU(TestCase):
                 self.assertTrue(False)
 
     # # ==========================================================================
-    # def test3000_problem_newline(self):
-    #     # ----------------------------------------------------------------------
-    #     # DB 접속정보 보내 드립니다.
-    #     # DB : Mysql
-    #     # Host : mail.vivans.net
-    #     # Userid : kingnik
-    #     # PW : 한려**1
-    #     # Port : 3306
-    #     # DB : viva_op
-    #     # 쿼리 : SELECT * FROM test1
-    #
-    #     dbms = 'mysql'
-    #     if dbms in self.tut:
-    #         print('%s%s' % (dbms, '*'*80))
-    #         try:
-    #             r = main('mysql', 'mail.vivans.net', 3306, 'kingnik', 'gksfutneh1', 'viva_op',
-    #                      '-e', 'SELECT * FROM test1')
-    #             self.assertTrue(r == 0)
-    #         except ArgsError as e:
-    #             sys.stderr.write('\n%s\n' % str(e))
-    #             self.assertTrue(False)
+    def test3000_problem_newline(self):
+        # ----------------------------------------------------------------------
+        # DB 접속정보 보내 드립니다.
+        # DB : Mysql
+        # Host : mail.vivans.net
+        # Userid : kingnik
+        # PW : 한려**1
+        # Port : 3306
+        # DB : viva_op
+        # 쿼리 : SELECT * FROM test1
+
+        dbms = 'mysql'
+        if dbms in self.tut:
+            print('%s%s' % (dbms, '*'*80))
+            try:
+                r = main('mysql', "argos-demo.vivans.net", 3306, "argosrpa", "argos0520", "argos_rpa_tso",
+                         '-e', 'SELECT * FROM rpa_monitor')
+                self.assertTrue(r == 0)
+            except ArgsError as e:
+                sys.stderr.write('\n%s\n' % str(e))
+                self.assertTrue(False)
 
     # ==========================================================================
     # def test3010_problem_csv_insert(self):

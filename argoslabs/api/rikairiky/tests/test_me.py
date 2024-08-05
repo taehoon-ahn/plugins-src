@@ -59,9 +59,9 @@ class TU(TestCase):
             print('Skip testing at test/build time')
             return
         try:
-            r = main('--0e1377caa04ec0--',
-                     '--3e4c2327e8499997--',
-                     '--tYbTdAfFqo8tAxHo--',
+            r = main('df0e1377caa04ec0b4',
+                     '133e4c2327e849999736',
+                     'nntYbTdAfFqo8tAxHo4G',
                      'imgs/ko-screenshot-01.png',
                      '이 문서의 제목은?',
                      "API 키는?",
@@ -82,9 +82,9 @@ class TU(TestCase):
             print('Skip testing at test/build time')
             return
         try:
-            r = main('--0e1377caa04ec0--',
-                     '--3e4c2327e8499997--',
-                     '--tYbTdAfFqo8tAxHo--',
+            r = main('df0e1377caa04ec0b4',
+                     '133e4c2327e849999736',
+                     'nntYbTdAfFqo8tAxHo4G',
                      'imgs/약제비.pdf',
                      '이 문서는 무엇입니까?',
                      "주민등록번호는?",
@@ -105,9 +105,12 @@ class TU(TestCase):
             print('Skip testing at test/build time')
             return
         try:
-            r = main('--0e1377caa04ec0--',
-                     '--3e4c2327e8499997--',
-                     '--tYbTdAfFqo8tAxHo--',
+            # Org ID: df0e1377caa04ec0b4
+            # Authkey: 133e4c2327e849999736
+            # Custom model ID # is: nntYbTdAfFqo8tAxHo4G
+            r = main('df0e1377caa04ec0b4',
+                     '133e4c2327e849999736',
+                     'nntYbTdAfFqo8tAxHo4G',
                      'Marubeni_SKM_C65823040615130_3.pdf',
                      # [table]No 1の品名は？
                      # [table]No 1の数量は？
@@ -127,36 +130,16 @@ class TU(TestCase):
             print('Skip testing at test/build time')
             return
         try:
-            r = main('--0e1377caa04ec0--',
-                     '--3e4c2327e8499997--',
-                     '--tYbTdAfFqo8tAxHo--',
+            # Org ID: df0e1377caa04ec0b4
+            # Authkey: 133e4c2327e849999736
+            # Custom model ID # is: nntYbTdAfFqo8tAxHo4G
+            r = main('df0e1377caa04ec0b4',
+                     '133e4c2327e849999736',
+                     'nntYbTdAfFqo8tAxHo4G',
                      'Marubeni_SKM_C65823040615130_3.pdf',
                      # "[table]No 1の品名は？",
                      # "[table]No 1の数量は？",
 #                     '--question-file', 'marubeni foods questions 01.txt',
-                     '--json-file', 'imgs/약제비.json',
-                     '--yaml-file', 'imgs/약제비.yaml',
-                     )
-            self.assertTrue(r == 1)
-        except ArgsError as e:
-            sys.stderr.write('\n%s\n' % str(e))
-            self.assertTrue(False)
-
-    # ==========================================================================
-    def test0170_riky_return_ocr(self):
-        sg = sys.gettrace()  # 디버그는 괜찮지만 실제 build.bat 에서는 오류 발생 때문
-        if sg is None:  # not in debug mode
-            print('Skip testing at test/build time')
-            return
-        try:
-            r = main('--0e1377caa04ec0--',
-                     '--3e4c2327e8499997--',
-                     '--tYbTdAfFqo8tAxHo--',
-                     'Marubeni_SKM_C65823040615130_3.pdf',
-                     # "[table]No 1の品名は？",
-                     # "[table]No 1の数量は？",
-                     #                     '--question-file', 'marubeni foods questions 01.txt',
-                     # '--return-ocr',  # 이 옵션 없이도 동작하도록 함
                      '--json-file', 'imgs/약제비.json',
                      '--yaml-file', 'imgs/약제비.yaml',
                      )

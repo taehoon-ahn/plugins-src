@@ -83,7 +83,7 @@ class TU(TestCase):
     def test0120_userfile(self):
         try:
             r = main('Send a file or message',self.token, '--chatid', '-1001223467093',
-                     '--file','sample')
+                     '--file','randomalphabet')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))

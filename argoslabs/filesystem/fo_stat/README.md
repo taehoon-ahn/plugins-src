@@ -44,20 +44,15 @@ Arun Kumar
 
 
 ## CSV headers and variable example
-| pathname                                 | basename                       | size                       | access_ts                       | modify_ts                      | create_ts                      |
-|------------------------------------------|--------------------------------|----------------------------|---------------------------------|--------------------------------|--------------------------------|
-| C:\Users\Administrator\Desktop\help_doc  | help_doc                       | 2907949                    | 2023-06-22 16:07:23             | 2023-06-15 11:16:54            | 2023-04-11 10:38:56            |
-| {{groupname.pathname(index)}}            | {{groupname.basename(index)}}  | {{groupname.size(index)}}  | {{groupname.access_ts(index)}}  | {{groupname.modify_ts(index)}} | {{groupname.create_ts(index)}} |
+| pathname                                | basename                       | size                       | access_ts                       | modify_ts                       | create_ts                       |
+|-----------------------------------------|--------------------------------|----------------------------|---------------------------------|---------------------------------|---------------------------------|
+| C:\Users\Administrator\Desktop\help_doc | help_doc                       | 2907949                    | 2023-06-22 16:07:23             | 2023-06-15 11:16:54             | 2023-04-11 10:38:56             |
+| {{groupname.pathname(index)}}            | {{groupname.basename(index)}}  | {{groupname.size(index)}}  | {{groupname.access_ts(index)}}  | {{groupname.modify_ts(index)}}  | {{groupname.create_ts(index)}}  |
 
 
-## Operations
 
-### folder status default:
+### How to set parameters
 
 ![Folder Status Input Data](README_1.png)
-
-### folder rename on checkbox:
-
-![Folder Status Input Data](README_2.png)
 
 

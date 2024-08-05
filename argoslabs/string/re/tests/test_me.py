@@ -355,8 +355,8 @@ hello,|Tom , tom|and    jerry\tJerry
             with captured_output() as (out, err):
                 r = main('replace',
                          vv_base64_encode(r','),
-                         vv_base64_encode('a@b.c.d,b@c.d.e'),
-                         '--replace', vv_base64_encode(', '))
+                         vv_base64_encode('1,300'),
+                         '--replace', vv_base64_encode(''))
             self.assertTrue(r == 0)
             stdout = out.getvalue().strip()
             if stdout:
@@ -364,7 +364,7 @@ hello,|Tom , tom|and    jerry\tJerry
             stderr = err.getvalue().strip()
             if stderr:
                 sys.stderr.write('%s%s' % (stderr, os.linesep))
-            self.assertTrue(stdout == 'a@b.c.d, b@c.d.e')
+            self.assertTrue(stdout == '1300')
         except Exception as e:
             sys.stderr.write('%s\n' % str(e))
             if stderr:

@@ -40,7 +40,7 @@ class TU(TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         os.chdir(os.path.dirname(__file__))
-        cls.clf = 'sample.csv'
+        cls.clf = 'randomalphabet.csv'
 
     # ==========================================================================
     def test50_missing(self):
@@ -85,7 +85,7 @@ class TU(TestCase):
     # ==========================================================================
     def test130_samecol_samecol(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'a:a', '--pasterange', 'b:b', '--newfilename',
                      'newfile.xlsx', )
@@ -97,7 +97,7 @@ class TU(TestCase):
     # ==========================================================================
     def test140_samecol_diffcol(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'a:a', '--pasterange', 'a:c', '--newfilename',
                      'newfile.xlsx', )
@@ -109,7 +109,7 @@ class TU(TestCase):
     # ==========================================================================
     def test150_cell_diffcol(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'a4', '--pasterange', 'b1:j10', '--newfilename',
                      'newfile.xlsx', )
@@ -121,7 +121,7 @@ class TU(TestCase):
     # ==========================================================================
     def test160_diffcol_cell(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'b4:b10', '--pasterange', 'c1', '--newfilename',
                      'newfile.xlsx', )
@@ -133,7 +133,7 @@ class TU(TestCase):
     # ==========================================================================
     def test170_samecol_cell(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'a:a', '--pasterange', 'c1', '--newfilename',
                      'newfile.xlsx', )
@@ -145,7 +145,7 @@ class TU(TestCase):
     # ==========================================================================
     def test180_diffcol_samecol(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'a:d', '--pasterange', 'a:a', '--newfilename',
                      'newfile.xlsx', '--copyval')
@@ -157,7 +157,7 @@ class TU(TestCase):
     # ==========================================================================
     def test190_diffcol_diffcol_smallpaste(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2',
                      '--range', 'a1:c7', '--pasterange', 'a1:b3',
                      '--newfilename',
@@ -170,7 +170,7 @@ class TU(TestCase):
     # ==========================================================================
     def test200_diffcol_diffcol_largepaste(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1',
                      '--range', 'a1:b3', '--pasterange', 'a1:c7',
                      '--newfilename',
                      'newfile.csv', '--copyval', '--dataonly')
@@ -182,7 +182,7 @@ class TU(TestCase):
     # ==========================================================================
     def test210_diffcol_diffcol_largepaste0(self):
         try:
-            r = main('sample.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
+            r = main('randomalphabet.xlsx', '--sheetname', 'Sheet1', '--pastesheet',
                      'Sheet2', '--range', 'a4:xx4', '--newfilename',
                      'newfile.xlsx', '--pasterange', 'a5:xx20', '--copyval',
                      '--dataonly')
@@ -194,7 +194,7 @@ class TU(TestCase):
     # ==========================================================================
     def test220_diffcol_diffcol_largepaste0(self):
         try:
-            r = main('sample.csv',
+            r = main('randomalphabet.csv',
                      '--range', 'a4:xx4',
                      '--pasterange', 'a5:xx20', '--newfilename',
                      'newfile.xlsx', '--copyval', '--dataonly')

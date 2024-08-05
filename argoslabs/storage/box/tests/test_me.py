@@ -53,7 +53,7 @@ class TU(TestCase):
     #     try:
     #         r = main('Upload Files', self.csecret, self.cid,
     #                  '--token', self.token,
-    #                  '--files', 'sample.txt',
+    #                  '--files', 'randomalphabet.txt',
     #                  '--folderid', '0')
     #         self.assertTrue(r == 9)
     #     except Exception as e:

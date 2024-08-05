@@ -38,7 +38,7 @@ from argoslabs.data.pathname_manip import _main as main
 class TU(TestCase):
     # ==========================================================================
     isFirst = True
-    xlf = 'sample.xlsx'
+    xlf = 'randomalphabet.xlsx'
     csv = 'foo.csv'
     wxl = os.path.join(gettempdir(), 'foo.xlsx')
     wcsv = os.path.join(gettempdir(), 'foo.csv')

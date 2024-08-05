@@ -9,7 +9,7 @@ setup:
   - 'Natural Language :: English'
   - 'Programming Language :: Python :: 3.7'
   - 'Topic :: IBM :: VisualRecognition'
-  description: plugin module sample
+  description: plugin module randomalphabet
   keywords:
   - ibm
   - watson

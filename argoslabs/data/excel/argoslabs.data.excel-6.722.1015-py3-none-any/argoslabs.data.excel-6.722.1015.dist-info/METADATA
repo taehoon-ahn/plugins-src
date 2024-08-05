@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: argoslabs.data.excel
+Version: 6.722.1015
+Summary: plugin for handling excel data
+Home-page: https://www.argos-labs.com
+Author: Jerry Chae
+Author-email: mcchae@argos-labs.com
+License: ARGOS-LABS Proprietary License
+Keywords: data,business,excel,advance,argoslabs
+Platform: Mac
+Platform: Windows
+Platform: Linux
+Classifier: Build :: Date :: 2024-07-22 10:18
+Classifier: Build :: Method :: alabs.ppm
+Classifier: License :: Other/Proprietary License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Automation
+Classifier: Topic :: Business :: ExcelAdvance
+Requires-Python: >=3.6
+Requires-Dist: alabs.common
+Requires-Dist: openpyxl
+Requires-Dist: xlwings
+Requires-Dist: numpy ==1.26.4
+Requires-Dist: pywin32
+
+UNKNOWN
+
+

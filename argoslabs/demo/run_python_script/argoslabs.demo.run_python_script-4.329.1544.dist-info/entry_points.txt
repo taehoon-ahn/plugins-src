@@ -1,0 +1,3 @@
+[console_scripts]
+argoslabs.demo.run_python_script = argoslabs.demo.run_python_script:main
+

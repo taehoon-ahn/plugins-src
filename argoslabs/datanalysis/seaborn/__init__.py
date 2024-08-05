@@ -29,6 +29,7 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 from alabs.common.util.vvargs import ModuleContext, func_log, \
     ArgsError, ArgsExit, get_icon_path
 

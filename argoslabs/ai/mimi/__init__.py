@@ -7,7 +7,7 @@
 
 Description
 ===========
-ARGOS LABS plugin module sample
+ARGOS LABS plugin module randomalphabet
 """
 # Authors
 # ===========
@@ -32,7 +32,7 @@ ARGOS LABS plugin module sample
 #  * [2020/02/26]
 #     - starting
 #     - hot to get token : https://mimi.readme.io/docs/first-step#section-%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E3%81%AE%E7%99%BA%E8%A1%8C
-#     - sample python code : https://github.com/FairyDevicesRD/mimi.example.python
+#     - randomalphabet python code : https://github.com/FairyDevicesRD/mimi.example.python
 
 ################################################################################
 import os

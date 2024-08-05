@@ -32,7 +32,7 @@ import sys
 import csv
 from unittest import TestCase
 # noinspection PyProtectedMember
-from argoslabs.web.selenium import _main as main
+from argoslabs.web.selenium import __main__ as main
 from tempfile import gettempdir
 
 
@@ -152,12 +152,12 @@ class TU(TestCase):
     # ==========================================================================
     def test0200_success_sample_01(self):
         sg = sys.gettrace()
-        if sg is None:  # Not in debug mode
-            print('Skip testing at test/build time')
-            return
+        # if sg is None:  # Not in debug mode
+        #     print('Skip testing at test/build time')
+        #     return
         of = 'stdout.txt'
         try:
-            r = main('Chrome',
+            r = main('Edge',
                      'ss_sample_01.py',
                      '--parameters', 'name::=blueskai',
                      '--parameters', 'dob::=1999-11-22',

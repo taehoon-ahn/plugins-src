@@ -48,7 +48,7 @@ class TU(TestCase):
             sys.stderr.write('\n%s\n' % str(e))
             self.assertTrue(True)
 
-    # ==========================================================================
+    # # ==========================================================================
     # def test100_maillists(self):
     #     stdout = 'output.txt'
     #     try:
@@ -59,6 +59,7 @@ class TU(TestCase):
     #                  # '--to', 'akb0930@vivans.net',
     #                  # '--to', 'argos',
     #                  '--search-body', '안녕하세요',
+    #                  '--get-unread',
     #                  # '--sort', 'Descending',
     #                  # '--sort', 'Ascending',
     #                  # '--unread',
@@ -130,25 +131,33 @@ class TU(TestCase):
     #         sys.stderr.write('\n%s\n' % str(e))
     #         self.assertTrue(False)
     #
-    # # ==========================================================================
-    # def test500_test500_send_mailsr(self):
-    #     try:
-    #         r = main('Send Mails', 'akb0930@vivans.net', '보낸 편지함',
-    #                  '--send-subjact', 'send-test',
-    #                  '--to', 'akb0930@naver.com',
-    #                  # '--to', 'akb0930@argos-labs.com',
-    #                  # '--to', 'ankyobong@gmail.com',
-    #                  '--cc', 'akb0930@argos-labs.com',
-    #                  '--bcc', 'akb0930@naver.com',
-    #                  '--send-body', 'test boby!!!',
-    #                  '--send-body', 'test boby!!!',
-    #                  '--attachment', 'output.txt'
-    #                  )
-    #         self.assertTrue(r == 0)
-    #     except ArgsError as e:
-    #         sys.stderr.write('\n%s\n' % str(e))
-    #         self.assertTrue(False)
+    # ==========================================================================
+    def test500_test500_send_mailsr(self):
+        try:
+            r = main('Send Mails', 'ak080495@gmail.com', '보낸 편지함',
+                     # '--send-subjact', 'send-test',
+                     '--stme',r'C:\Users\Administrator\Downloads\EmailRecipients(2).csv',
+                     # '--to', 'akb0930@naver.com',
+                     # '--to', 'akb0930@argos-labs.com',
+                     # '--to', 'ankyobong@gmail.com',
+                     # '--cc', 'akb0930@argos-labs.com',
+                     # '--bcc', 'akb0930@naver.com',
+                     # '--send-body', 'test boby!!!',
+                     # '--send-body', 'test boby!!!',
+                     # '--htmlbody', '<html>     <body>         <h1>Title</h1>         <p>This is a paragraph.</p>         <img src="image-url">     </body> </html>',
+                     # '--htmlbody-file', r'C:\Users\argos\Desktop\bongsplugin\plug-in-test\outlook\body.html',
+                     # '--key', 'image-url1',
+                     # '--key', 'image-url',
+                     # '--value', r'C:\Users\argos\Downloads\in-the-field.jpg',
+                     # '--value', r'C:\Users\argos\Desktop\bongsplugin\plug-in-test\outlook\Attachments_test\img_file.png',
 
+                     '--send-subjact','Test 1',
+                     '--htmlbody','<html><body><h1>This is a heading</h1><p>This is a paragraph.</p></body></html>'
+                     )
+            self.assertTrue(r == 0)
+        except ArgsError as e:
+            sys.stderr.write('\n%s\n' % str(e))
+            self.assertTrue(False)
 
     # # ==========================================================================
     # def test500_send_mails(self):

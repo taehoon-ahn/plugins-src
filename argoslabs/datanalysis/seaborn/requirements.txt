@@ -5,7 +5,7 @@ alabs.common
 
 # matplot
 openpyxl
-matplotlib
+matplotlib==3.9.0
 seaborn
 
 # for pandas

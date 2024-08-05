@@ -12,7 +12,7 @@ setup:
   - 'Topic :: Change :: Log :: Unittest for Mac'
   - 'Topic :: Change :: Log :: Unittest for Linux'
   - 'Topic :: Change :: Log :: Unittest for Windows'
-  description: plugin module sample
+  description: plugin module randomalphabet
   keywords:
   - rpa
   - robot

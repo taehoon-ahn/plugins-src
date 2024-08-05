@@ -47,8 +47,8 @@ class TU(TestCase):
     # xlf = 'sample.xlsx'
     # wxl = os.path.join(gettempdir(), 'foo.xlsx')
     xlsms = (  # tests/*.xlsm must be copyed
-        'C:/work/excelmacro/stoptime.xlsm',
-        'C:/work/excelmacro/macro_test01.xlsm',
+        'C:/plugins-src-main/argoslabs/data/excelmacro/tests/stoptime.xlsm',
+        'C:/plugins-src-main/argoslabs/data/excelmacro/tests/macro_test01.xlsm',
     )
     out = 'stdout.txt'
     err = 'stderr.txt'
@@ -128,6 +128,7 @@ class TU(TestCase):
             return
         try:
             r = main(self.xlsms[0], 'Calculate',
+                     '--filetime',
                      '--outfile', self.out,
                      '--errfile', self.err)
             self.assertTrue(r == 0)

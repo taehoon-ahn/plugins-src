@@ -178,7 +178,7 @@ def _main(*args):
     ) as mcxt:
         # ######################################## for app dependent options
         mcxt.add_argument('--newusername', display_name='New username',
-                          help='email format ex.sample@sales.com')
+                          help='email format ex.randomalphabet@sales.com')
         # ----------------------------------------------------------------------
         mcxt.add_argument('--lastname', display_name='Lastname',
                           help='lastname of the user')

@@ -16,8 +16,8 @@ setup:
   platforms:
   - Windows
   package_data:
-    argoslabs.data.excelmacro: ['icon.*' 'README*.*']
+    argoslabs.data.excelmacro: ['icon.*', 'README*.*']
   url: https://www.argos-labs.com
 #  version: 2.428.2052
   # version: 2.428.3300
-  version: 2.428.3456
+  version: 6.325.1556

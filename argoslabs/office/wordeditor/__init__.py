@@ -602,11 +602,11 @@ def _main(*args):
         # ----------------------------------------------------------------------
         mcxt.add_argument('--plot', display_name='Read Plot',
                           action='store_true',
-                          help='Read Plot will plot a sample help docx')
+                          help='Read Plot will plot a randomalphabet help docx')
         # ----------------------------------------------------------------------
         mcxt.add_argument('--nplot', display_name='Read Plot with New Line',
                           action='store_true',
-                          help='Read Plot with New Line will plot a sample help docx')
+                          help='Read Plot with New Line will plot a randomalphabet help docx')
         # ----------------------------------------------------------------------
         mcxt.add_argument('--row_id', display_name='Row Index', type=int,
                           action='append',

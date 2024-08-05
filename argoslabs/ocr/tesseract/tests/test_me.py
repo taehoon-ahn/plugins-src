@@ -153,7 +153,7 @@ class TU(TestCase):
     def test0130_success_ocr(self):
         outfile = 'stdout.txt'
         try:
-            r = main('OCR', 'sample.png', 'English',
+            r = main('OCR', 'randomalphabet.png', 'English',
                      '--outfile', outfile)
             self.assertTrue(r == 0)
             with open(outfile) as ifp:

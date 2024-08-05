@@ -26,6 +26,4 @@ setup:
     argoslabs.api.rikairiky: ['icon.*', 'README*.*']
   url: https://www.argos-labs.com
 #  version: 5.302.1003
-#  version: 5.515.2211
-#  version: 5.725.707
-  version: 5.804.1000
+  version: 5.515.2211

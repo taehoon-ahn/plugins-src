@@ -18,6 +18,9 @@ ARGOS LABS data analysis using PANDAS basic
 # Change Log
 # --------
 #
+#  * [2024/06/24]
+#     - to_excel() encoding 옵션 제거
+#     - numpy 버전 1.26.4로 조정
 #  * [2021/04/02]
 #     - 그룹에 "4-Data Science" 넣음
 #  * [2020/09/11]

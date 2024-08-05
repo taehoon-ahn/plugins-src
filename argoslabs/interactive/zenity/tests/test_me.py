@@ -46,8 +46,8 @@ class TU(TestCase):
             r = main(
                 '--text', 'my calendar&', '--icon', 'icon-my.png',
                      '--width', '500','--height', '500', '--timeout', '50',
-                     '--date_format',  'YYYYMMDD', '--day','20', '--month', '12',
-                     '--year', '2018', '--ok_label', 'Sel ect&', '--cancel_label',
+                     '--date_format',  'YYYY-MM-DD', '--day','21', '--month', '03',
+                     '--year', '2024', '--ok_label', 'Sel ect&', '--cancel_label',
                      'Ex it &'
             )
             self.assertTrue(r == 0)

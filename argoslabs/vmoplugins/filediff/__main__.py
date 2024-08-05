@@ -7,7 +7,7 @@
 
 Description
 ===========
-YOUR LABS plugin module sample
+YOUR LABS plugin module randomalphabet
 """
 
 ################################################################################

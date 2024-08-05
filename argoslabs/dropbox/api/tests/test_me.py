@@ -47,7 +47,7 @@ class TU(TestCase):
     # ==========================================================================
     def test0110_upload_files(self):
         try:
-            r = main('Upload Files', self.token, '--files', 'sample.txt',
+            r = main('Upload Files', self.token, '--files', 'randomalphabet.txt',
                      '--files', 'sample2.txt',
                      '--directory', '/')
             self.assertTrue(r == 0)

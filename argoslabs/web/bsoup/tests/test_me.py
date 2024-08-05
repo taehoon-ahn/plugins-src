@@ -1645,7 +1645,7 @@ class TU(TestCase):
         of = '%s/stdout.txt' % gettempdir()
         try:
             work_list = (
-                ('ecfr-sample.html', 'ecfr-sample.yaml', 3, 248, '2019'),
+                ('ecfr-randomalphabet.html', 'ecfr-randomalphabet.yaml', 3, 248, '2019'),
             )
             for html, yaml, num_cols, num_rows, last_val in work_list:
                 r = main(html, '--spec-file', yaml,

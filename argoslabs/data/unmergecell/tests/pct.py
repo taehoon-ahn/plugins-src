@@ -1,6 +1,6 @@
 # import xlrd
 #
-# book = xlrd.open_workbook('sample-merged-excel.xls', formatting_info=True)
+# book = xlrd.open_workbook('randomalphabet-merged-excel.xls', formatting_info=True)
 # ws = book.sheets()
 # for i in ws:
 #     print(i.cell('a1','a1').value)

@@ -94,6 +94,7 @@ def do_start(**kwargs):
             browser=kwargs.get('browser', 'Chrome'),
             width=int(kwargs.get('width', '1200')),
             height=int(kwargs.get('height', '800')),
+            maximize=True,
             logger=kwargs['logger']) as ws:
         ws.start()
         return 0
@@ -105,7 +106,7 @@ if __name__ == '__main__':
     logger = get_logger(log_f, logsize=1024*1024*10)
     _kwargs = {
         # 'browser': 'Chrome',
-        'browser': 'Edge',
+        'browser': 'Chrome',
         'name': 'kairoslab99',
         'dob': '1999-01-01',
         'birth_place': 'San Jose, CA USA',

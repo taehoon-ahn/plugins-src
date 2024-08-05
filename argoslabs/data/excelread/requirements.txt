@@ -4,7 +4,7 @@
 alabs.common
 
 # for Excel
-openpyxl==3.0.7
+openpyxl
 
 # for csv
 xlwings==0.23.0

@@ -19,6 +19,8 @@ ARGOS LABS plugin module for Excel
 #
 # Change Log
 # --------
+#   [2023/12/26]
+#   data-only option 체크 시 작업관리자에 엑셀 프로세스가 남아있는 문제 수정
 #  * [2022/07/12]
 #   - 엑셀 읽는 방식 변경 기존에는 행과열로 이중 포문 사용 하여 제어. ->  iter_rows를 사용해 최대최소 행과열을 변수로하는 함수 사용.
 #   - 읽는 속도 개선. 하지만 위와같은 방식은 openpyxl에서만 적용 dataonly를 사용하는 xlwings에서는 사용불가.
@@ -283,7 +285,7 @@ class Excel(object):
                 yield row
         if self.argspec.data_only:
             wbxl.close()
-
+            app.quit()
     # ==========================================================================
     def get(self):
         self.rr = []
@@ -402,6 +404,7 @@ def _main(*args):
 
         # ##################################### for app dependent parameters
         # ----------------------------------------------------------------------
+
         mcxt.add_argument('filename',
                           display_name='Excel/CSV File',
                           input_method='fileread',

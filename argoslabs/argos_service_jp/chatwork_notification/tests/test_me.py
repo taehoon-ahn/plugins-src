@@ -137,7 +137,7 @@ class TU(TestCase):
                      config.room_id,
                      'Unit Test Message: %s' % datetime.now(),
                      '--file',
-                     'C:/Users/Windows/Videos/video-sample.mp4')
+                     'C:/Users/Windows/Videos/video-randomalphabet.mp4')
             self.assertTrue(r == 0)
         except ArgsError as e:
             sys.stderr.write('\n%s\n' % str(e))

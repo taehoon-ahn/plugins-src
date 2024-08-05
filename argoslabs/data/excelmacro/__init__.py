@@ -19,8 +19,9 @@ ARGOS LABS plugin module for Excel Macro
 #
 # Change Log
 # --------
-#
-#  * [2021/04/13]
+##  * [2024/03/25] Wanjin
+#      - 플러그인을 실행해도 파일의 스탬프가 변동되지 않는 옵션 추가
+#  * [2021/03/29]
 #     - 그룹에 "2-Business Apps" 넣음
 #  * [2020/04/28]
 #     - only accept '.xlsm', 'xls'
@@ -126,6 +127,9 @@ def _main(*args):
         mcxt.add_argument('--params', action='append',
                           display_name='Params', show_default=True,
                           help='Parameters for macro function')
+        mcxt.add_argument('--filetime', action='store_true',
+                          display_name='File TimeStamp',
+                          help="If you don't want to update the file time ")
         # ##################################### for app dependent parameters
         # ----------------------------------------------------------------------
         mcxt.add_argument('filename',

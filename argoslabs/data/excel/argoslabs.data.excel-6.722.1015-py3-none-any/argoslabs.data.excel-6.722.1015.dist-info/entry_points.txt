@@ -1,0 +1,3 @@
+[console_scripts]
+argoslabs.data.excel = argoslabs.data.excel:main
+

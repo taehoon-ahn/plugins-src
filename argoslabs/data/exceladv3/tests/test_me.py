@@ -41,8 +41,8 @@ class TU(TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         os.chdir(os.path.dirname(__file__))
-        cls.xlf = 'sample.xlsx'
-        cls.clf = 'sample.csv'
+        cls.xlf = 'randomalphabet.xlsx'
+        cls.clf = 'randomalphabet.csv'
 
     # ==========================================================================
     def test50_missing(self):
@@ -270,7 +270,7 @@ class TU(TestCase):
     # ==========================================================================
     def test0300_sum(self):
         try:
-            r = main('sample.xlsx', 'SUM', '--sheetname', 'Sheet',
+            r = main('randomalphabet.xlsx', 'SUM', '--sheetname', 'Sheet',
                      '--newcell', "e4", '--range', 'a1:a2',
                      '--newvalue', "10",  '--newfilename',
                      'output.xlsx')
@@ -323,7 +323,7 @@ class TU(TestCase):
     # # ==========================================================================
     def test0350_replace(self):
         try:
-            r = main('sample.xlsx', 'Replace value/formula',
+            r = main('randomalphabet.xlsx', 'Replace value/formula',
                         '--oldvalue','=100+100', '--range', 'a1:j30',
                      '--newvalue', 'string',
                      '--newfilename','new.xlsx','--sheetname','Sheet4')
@@ -338,7 +338,7 @@ class TU(TestCase):
             fml = '=sum(1,2)'
             v = base64.b64encode(fml.encode('utf-8'))
             v = v.decode('ascii')
-            r = main('sample.xlsx', 'Fill formula',
+            r = main('randomalphabet.xlsx', 'Fill formula',
                      '--newvalue',v ,'--sheetname','Sheet4',
                      '--range', 'F10')
             self.assertTrue(r == 0)

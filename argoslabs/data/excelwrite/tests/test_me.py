@@ -38,7 +38,7 @@ from argoslabs.data.excelwrite import _main as main
 class TU(TestCase):
     # ==========================================================================
     isFirst = True
-    xlf = 'sample.xlsx'
+    xlf = 'randomalphabet.xlsx'
     csv = 'foo.csv'
     wxl = os.path.join(gettempdir(), 'foo.xlsx')
     wcsv = os.path.join(gettempdir(), 'foo.csv')
@@ -64,8 +64,6 @@ class TU(TestCase):
             xls = "text_excel_data.xlsx"
             out = "test_excel.xlsx"
             r = main(xls,
-                     'name',
-                     'Name',
                      out,
                      '--write-cell', 'B1',
                      '--range', 'B1',
@@ -87,7 +85,7 @@ class TU(TestCase):
             out = "test_excel.xlsx"
             r = main(xls,
                      '',
-                     'blank',
+                     '',
                      out,
                      '--sheet', 'Sheet1')
             self.assertTrue(r == 0)

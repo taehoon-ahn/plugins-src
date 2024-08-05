@@ -66,7 +66,7 @@ class TU(TestCase):
                      '--bucket_path',
                      'shimasaki-argos-bucket/my-folder/',
                      '--path',
-                     '{}/work/AWS_S3_Operation/argoslabs/argos_service_jp/aws_s3_operation/tests/video-sample.mp4'.format(self.homedrive),
+                     '{}/work/AWS_S3_Operation/argoslabs/argos_service_jp/aws_s3_operation/tests/video-randomalphabet.mp4'.format(self.homedrive),
                      '--add_path',
                      '{}/work/AWS_S3_Operation/argoslabs/argos_service_jp/aws_s3_operation/tests/2021-03-10 13-57-59.mp4'.format(self.homedrive),
                      '--add_path',
@@ -85,7 +85,7 @@ class TU(TestCase):
         try:
             r = main('Download',
                      '--bucket_path',
-                     'shimasaki-argos-bucket/my-folder/video-sample.mp4',
+                     'shimasaki-argos-bucket/my-folder/video-randomalphabet.mp4',
                      '--path',
                      '{}{}/Desktop'.format(self.homedrive, self.homepath),
                      '--add_path',
