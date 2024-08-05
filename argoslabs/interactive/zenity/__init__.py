@@ -18,7 +18,6 @@ ARGOS LABS Zenity Plugin
 #
 # --------
 # [2024/04/01]
-#   git-test
 #  taehoon ahn
 # - all advanced Date format option fix
 #
